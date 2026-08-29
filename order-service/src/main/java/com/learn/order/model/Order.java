@@ -3,7 +3,7 @@ package com.learn.order.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
+import java.math.BigDecimal; 
 
 @Entity
 @Table(name = "t_orders")
