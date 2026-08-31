@@ -52,5 +52,3 @@ application-local.yml
 application-local.yaml
 
 HELP.md
-
-src/main/resources/application.properties
