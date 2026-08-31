@@ -1,0 +1,54 @@
+# Maven
+target/
+.mvn/wrapper/maven-wrapper.jar
+
+# Keep Maven wrapper files
+# .mvn/wrapper/maven-wrapper.properties
+# mvnw
+# mvnw.cmd
+
+# Eclipse / STS
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# Build
+build/
+out/
+
+# Java
+*.class
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment / secrets
+.env
+.env.*
+application-local.properties
+application-local.yml
+application-local.yaml
+
+HELP.md
