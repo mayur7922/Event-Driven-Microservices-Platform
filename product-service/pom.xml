@@ -91,6 +91,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<name>mayurkhemnar/${project.artifactId}</name>
+						<publish>true</publish>
+						<imagePlatform>linux/arm64</imagePlatform>
+					</image>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
