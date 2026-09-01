@@ -1,5 +1,6 @@
 package com.learn.gateway.routes;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.server.mvc.filter.CircuitBreakerFilterFunctions;
 import org.springframework.cloud.gateway.server.mvc.handler.GatewayRouterFunctions;
 import org.springframework.cloud.gateway.server.mvc.handler.HandlerFunctions;
@@ -19,6 +20,13 @@ import static org.springframework.cloud.gateway.server.mvc.handler.GatewayRouter
 @Configuration
 public class Routes {
 
+    @Value("${product.service.url}")
+    private String productServiceUrl;
+    @Value("${order.service.url}")
+    private String orderServiceUrl;
+    @Value("${inventory.service.url}")
+    private String inventoryServiceUrl;
+
     @Bean
     public RouterFunction<ServerResponse> productServiceRoute(){
         return GatewayRouterFunctions.route("product_service")
@@ -26,7 +34,7 @@ public class Routes {
                         RequestPredicates.path("/api/product"),
                         HandlerFunctions.http()
                 )
-                .before(uri("http://localhost:8080"))
+                .before(uri(productServiceUrl))
                 .filter(
                         CircuitBreakerFilterFunctions.circuitBreaker(
                                 "productServiceCircuitBreaker",
@@ -43,7 +51,7 @@ public class Routes {
                         "/aggregate/product-service/v3/api-docs"),
                         HandlerFunctions.http()
                 )
-                .before(uri("http://localhost:8080"))
+                .before(uri(productServiceUrl))
                 .before(setPath("/api-docs"))
                 .filter(
                         CircuitBreakerFilterFunctions.circuitBreaker(
@@ -61,7 +69,7 @@ public class Routes {
                         RequestPredicates.path("/api/order"),
                         HandlerFunctions.http()
                 )
-                .before(uri("http://localhost:8081"))
+                .before(uri(orderServiceUrl))
                 .filter(
                         CircuitBreakerFilterFunctions.circuitBreaker(
                                 "orderServiceCircuitBreaker",
@@ -78,7 +86,7 @@ public class Routes {
                         RequestPredicates.path("/aggregate/order-service/v3/api-docs"),
                         HandlerFunctions.http()
                 )
-                .before(uri("http://localhost:8081"))
+                .before(uri(orderServiceUrl))
                 .before(setPath("/api-docs"))
                 .filter(
                         CircuitBreakerFilterFunctions.circuitBreaker(
@@ -96,7 +104,7 @@ public class Routes {
                         RequestPredicates.path("/api/inventory"),
                         HandlerFunctions.http()
                 )
-                .before(uri("http://localhost:8082"))
+                .before(uri(inventoryServiceUrl))
                 .filter(
                         CircuitBreakerFilterFunctions.circuitBreaker(
                                 "inventoryServiceCircuitBreaker",
@@ -113,7 +121,7 @@ public class Routes {
                         "/aggregate/inventory-service/v3/api-docs"),
                         HandlerFunctions.http()
                 )
-                .before(uri("http://localhost:8082"))
+                .before(uri(inventoryServiceUrl))
                 .before(setPath("/api-docs"))
                 .filter(
                         CircuitBreakerFilterFunctions.circuitBreaker(
